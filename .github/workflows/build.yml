@@ -2,6 +2,8 @@ name: JS Workflow
 
 on:
   push:
+    branches:
+        - main
     paths:
       - '**/*.js'      # Run only when JS files change
       - '!docs/**'      # Ignore changes in docs folder
