@@ -52,15 +52,12 @@
 # using second command in this apge this command is schedule that try to run workflow on time that youwant to setting in this schedule 
 on:
   schedule:
-    - cron:  '10 16 * * *'
+    - cron: '16 16 * * *'  # Runs at 16:10 UTC every day
 
 jobs:
   test_schedule:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Not on Monday or Wednesday
-        if: github.event.schedule == '10 16 * * *'
-        run: echo "Good noon sir how i help you"
-      - name: Every time
-        run: echo "This step will always run"
+      - name: Echo message
+        run: echo "Good noon sir, how can I help you?"
