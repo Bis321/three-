@@ -5,7 +5,7 @@ on:
     branches:
         - main
     paths:
-      - '**/*.js'      # Run only when JS files change
+      - '**.js'      # Run only when JS files change
       - '!docs/**'      # Ignore changes in docs folder
 
 jobs:
