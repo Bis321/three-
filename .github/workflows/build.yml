@@ -1,14 +1,15 @@
 name: Node.js CI
 
 on:
-  issues:
-    types:
-      - opened
-      - labeled
+  
   
   push:
+    paths:
+      - '**/*.js'      # Run only when JS files change
+      - '!docs/**'
     branches:
       - main
+
 
 
 jobs:
