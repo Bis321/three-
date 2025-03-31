@@ -4,8 +4,7 @@ on:
   push:
     paths:
       - '**/*.js'      # Run only when JS files change
-    paths-ignore:
-      - 'docs/**'      # Ignore changes in docs folder
+      - '!docs/**'      # Ignore changes in docs folder
 
 jobs:
   build:
