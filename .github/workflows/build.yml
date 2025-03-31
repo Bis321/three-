@@ -6,7 +6,7 @@ on:
   push:
     paths:
       - '**/*.js'      # Run only when JS files change
-      - '!docs/**'
+      - 'docs/**'
     branches:
       - main
 
