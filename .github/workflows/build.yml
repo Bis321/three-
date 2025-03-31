@@ -1,15 +1,18 @@
-name: JS Workflow
+name: Node.js CI
 
 on:
+  issues:
+    types:
+      - opened
+      - labeled
+  
   push:
     branches:
-        - main
-    paths:
-      - '**.js'      # Run only when JS files change
-      - '!docs/**'      # Ignore changes in docs folder
+      - main
+
 
 jobs:
-  build: 
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,11 +27,22 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-# Step	Command	Purpose
-# 1	git init	Initialize Git
-# 2	git remote add origin <repo_url>	Connect to GitHub
-# 3	git checkout -b main	Create and switch to main branch
-# 4	git add .	Stage changes
-# 5	git commit -m "Initial commit"	Commit changes
-# 6	git push -u origin main	Push code to GitHub
-   
+
+  notify:
+    needs: build
+    runs-on: ubuntu-latest
+    container: node:14
+    steps:
+      - name: Notify on Issue or Label Event
+        if: github.event_name == 'issues' || github.event_name == 'label'
+        run: echo "An issue or label event occurred."
+
+      - name: Notify on Page Build
+        if: github.event_name == 'page_build'
+        run: echo "Page build completed."
+      - uses : actions/checkout@v2
+      - run : npm install 
+      - name: Start Server (Runs in Background)
+        run: node app.js &
+      - name: Stop Server (If Still Running)
+        run: pkill -f "node app.js" || true
