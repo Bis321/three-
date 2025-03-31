@@ -1,0 +1,33 @@
+name: JS Workflow
+
+on:
+  push:
+    paths:
+      - '**/*.js'      # Run only when JS files change
+    paths-ignore:
+      - 'docs/**'      # Ignore changes in docs folder
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+# Step	Command	Purpose
+# 1	git init	Initialize Git
+# 2	git remote add origin <repo_url>	Connect to GitHub
+# 3	git checkout -b main	Create and switch to main branch
+# 4	git add .	Stage changes
+# 5	git commit -m "Initial commit"	Commit changes
+# 6	git push -u origin main	Push code to GitHub
+   
