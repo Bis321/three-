@@ -52,7 +52,7 @@
 # using second command in this apge this command is schedule that try to run workflow on time that youwant to setting in this schedule 
 on:
   schedule:
-    - cron: '52 15 * * *'  # Runs at 16:10 UTC every day
+    - cron: '10 16 1 * *'  # Runs at 16:10 UTC every day
 
 jobs:
   test_schedule:
